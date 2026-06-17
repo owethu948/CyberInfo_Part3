@@ -12,30 +12,33 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      # ── 1. Checkout ─────────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ── 2. .NET SDK ──────────────────────────────────────────────────────────
+      # ── 2. .NET SDK ─────────────────────────────────────────────────────────
       - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
 
       # ── 3. Restore NuGet packages ─────────────────────────────────────────────
+      # Restore with the runtime identifier so that project.assets.json includes win-x64
       - name: Restore dependencies
-        run: dotnet restore CyberInfo/CyberInfo.csproj
+        run: dotnet restore CyberInfo/CyberInfo.csproj -r win-x64
 
       # ── 4. Build (Release) ────────────────────────────────────────────────────
+      # Build with the same runtime to produce RID-specific output (used later by publish --no-build)
       - name: Build
-        run: dotnet build CyberInfo/CyberInfo.csproj --configuration Release --no-restore
+        run: dotnet build CyberInfo/CyberInfo.csproj --configuration Release -r win-x64 --no-restore
 
       # ── 5. Publish self-contained Windows executable ──────────────────────────
+      # Publish self-contained; reuse the built artifacts (--no-build)
       - name: Publish
         run: >
           dotnet publish CyberInfo/CyberInfo.csproj
           --configuration Release
-          --runtime win-x64
+          -r win-x64
           --self-contained true
           --output ./publish
           --no-build
