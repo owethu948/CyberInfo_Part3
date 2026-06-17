@@ -1,0 +1,49 @@
+name: CyberInfo WPF Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    # WPF requires a Windows runner — Linux/macOS cannot build WPF applications.
+    runs-on: windows-latest
+
+    steps:
+      # ── 1. Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. .NET SDK ──────────────────────────────────────────────────────────
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # ── 3. Restore NuGet packages ─────────────────────────────────────────────
+      - name: Restore dependencies
+        run: dotnet restore CyberInfo/CyberInfo.csproj
+
+      # ── 4. Build (Release) ────────────────────────────────────────────────────
+      - name: Build
+        run: dotnet build CyberInfo/CyberInfo.csproj --configuration Release --no-restore
+
+      # ── 5. Publish self-contained Windows executable ──────────────────────────
+      - name: Publish
+        run: >
+          dotnet publish CyberInfo/CyberInfo.csproj
+          --configuration Release
+          --runtime win-x64
+          --self-contained true
+          --output ./publish
+          --no-build
+
+      # ── 6. Upload artifact ────────────────────────────────────────────────────
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CyberInfo-Release
+          path: ./publish
+          retention-days: 30
