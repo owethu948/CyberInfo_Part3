@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "Slo4b3jLvGY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Lisakhanya Jonas\\Downloads\\CyberInfo_Part3\\CyberInfo\\CyberInfo\\CyberInfo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\google.protobuf\\3.30.0\\google.protobuf.3.30.0.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\k4os.compression.lz4\\1.3.8\\k4os.compression.lz4.1.3.8.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\k4os.compression.lz4.streams\\1.3.8\\k4os.compression.lz4.streams.1.3.8.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\k4os.hash.xxhash\\1.0.8\\k4os.hash.xxhash.1.0.8.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\mysql.data\\9.3.0\\mysql.data.9.3.0.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\system.windows.extensions\\10.0.8\\system.windows.extensions.10.0.8.nupkg.sha512",
+    "C:\\Users\\Lisakhanya Jonas\\.nuget\\packages\\zstdsharp.port\\0.8.5\\zstdsharp.port.0.8.5.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Windows.Extensions will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "C:\\Users\\Lisakhanya Jonas\\Downloads\\CyberInfo_Part3\\CyberInfo\\CyberInfo\\CyberInfo.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Lisakhanya Jonas\\Downloads\\CyberInfo_Part3\\CyberInfo\\CyberInfo\\CyberInfo.csproj",
+      "libraryId": "System.Windows.Extensions",
+      "targetGraphs": [
+        "net10.0-windows7.0"
+      ]
+    }
+  ]
+}
